@@ -8,13 +8,17 @@ class Car:
         self.color = color
         self.cylinder = cylinder
         
+    #metodo para mostrar los detalles del coche
+    #No es recomendable usar print dentro de los metodos, ya que deben centrarse en devolver datos, no en mostrarlos
+    #Como en este metodo no imprime nada, para que se pueda devolver valores cuando le pasamos al objeto se necesitara usar print()
+    #cuando lo llamemos desde el objeto para mostrar su valor en consola.
     def details(self):
-        
-        print(f'manufacturer = {self.manufacturer}')
-        print(f'model = {self.model}')
-        print(f'color = {self.color}')
-        print(f'cylinder = {self.cylinder}')
-        
+        detail = f'manufacturer = {self.manufacturer}\n'
+        detail += f'model = {self.model}\n'
+        detail += f'color = {self.color}\n'
+        detail += f'cylinder = {self.cylinder}\n'
+        return detail
+
 #Creamos un objeto de la clase Car
 car = Car()
 
@@ -23,7 +27,8 @@ car.manufacturer = 'Toyota'
 car.model = 'Corolla'
 car.color = 'Red'
 car.cylinder = 1.8
-car.details()
+#Mostramos los detalles del objeto car
+print(car.details()) 
 
 #Creamos otro objeto de la clase Car
 mazda = Car()
@@ -31,8 +36,8 @@ mazda.manufacturer = 'Mazda'
 mazda.model = 'CX-5'
 mazda.color = 'Blue'
 mazda.cylinder = 2.5
-mazda.details()
+print(mazda.details())
 
 #Creamos otro objeto de la clase Car, esto es otra forma de agregar datos al objeto car al momento de crearlo
 chevrolet = Car("Chevrolet", "Camaro", "Yellow", 3.6)
-chevrolet.details()
+print(chevrolet.details())
