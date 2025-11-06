@@ -7,7 +7,15 @@ class Car:
         self.model = model
         self.color = color
         self.cylinder = cylinder
-
+        
+    def details(self):
+        
+        print(f'manufacturer = {self.manufacturer}')
+        print(f'model = {self.model}')
+        print(f'color = {self.color}')
+        print(f'cylinder = {self.cylinder}')
+        
+#Creamos un objeto de la clase Car
 car = Car()
 
 #Le pasamos datos al objeto car
@@ -15,9 +23,16 @@ car.manufacturer = 'Toyota'
 car.model = 'Corolla'
 car.color = 'Red'
 car.cylinder = 1.8
+car.details()
 
-#Mostramos los datos del objeto car
-print(f'car.manufacturer: ',  car.manufacturer)
-print(f'car.model: ',  car.model)
-print(f'car.color: ',  car.color)
-print(f'car.cylinder: ',  car.cylinder)
+#Creamos otro objeto de la clase Car
+mazda = Car()
+mazda.manufacturer = 'Mazda'
+mazda.model = 'CX-5'
+mazda.color = 'Blue'
+mazda.cylinder = 2.5
+mazda.details()
+
+#Creamos otro objeto de la clase Car, esto es otra forma de agregar datos al objeto car al momento de crearlo
+chevrolet = Car("Chevrolet", "Camaro", "Yellow", 3.6)
+chevrolet.details()
