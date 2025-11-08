@@ -33,17 +33,28 @@ class Car:
     def get_color(self):
         return self.__color
     
+    @property
+    def cylinder(self):
+        return self.__cylinder
+    
+    @cylinder.setter
+    def cylinder(self, value):
+        self.__cylinder = value
 
 #Creamos un objeto de la clase Car
-car = Car("subaru", None, "", 2.0)
+car = Car("subaru")
 #Cambiamos el color del coche usando el metodo set_color
 car.set_color("Red")  
 #Cambiamos el modelo del coche usando el metodo set_model
 car.set_model("Impreza")
+#Cambiamos el valor del atributo cylinder usando el decorador property
+car.cylinder = 2.0
 #Mostramos los detalles del objeto car
 print(car.details())
 
 
 #Creamos otro objeto de la clase Car
-mazda = Car("Mazda", "CX-5", "Blue", 2.5)
+mazda = Car()
+mazda.cylinder = 3.0
 print(mazda.details())
+print(mazda.cylinder)
