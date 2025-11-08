@@ -27,30 +27,23 @@ class Car:
     def get_model(self):
         return self.__model
     
+    def set_color(self, value):
+        self.__color = value 
+    
     def get_color(self):
         return self.__color
     
 
 #Creamos un objeto de la clase Car
-car = Car()
-
-#Le pasamos datos al objeto car
-car.manufacturer = 'Toyota'
-car.model = 'Corolla'
-car.color = 'Red'
-car.cylinder = 1.8
-
+car = Car("subaru", None, "", 2.0)
+#Cambiamos el color del coche usando el metodo set_color
+car.set_color("Red")  
+#Cambiamos el modelo del coche usando el metodo set_model
+car.set_model("Impreza")
 #Mostramos los detalles del objeto car
-print(car.details()) 
+print(car.details())
+
 
 #Creamos otro objeto de la clase Car
-mazda = Car()
-mazda.manufacturer = 'Mazda'
-mazda.model = 'CX-5'
-mazda.color = 'Blue'
-mazda.cylinder = 2.5
+mazda = Car("Mazda", "CX-5", "Blue", 2.5)
 print(mazda.details())
-
-#Creamos otro objeto de la clase Car, esto es otra forma de agregar datos al objeto car al momento de crearlo
-chevrolet = Car("Chevrolet", "Camaro", "Yellow", 3.6)
-print(chevrolet.details())
