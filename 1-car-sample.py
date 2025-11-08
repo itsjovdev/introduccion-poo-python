@@ -20,6 +20,16 @@ class Car:
         detail += f'color = {self.__color}\n'
         detail += f'cylinder = {self.__cylinder}\n'
         return detail
+    
+    def set_model(self, value):
+        self.__model = value
+    
+    def get_model(self):
+        return self.__model
+    
+    def get_color(self):
+        return self.__color
+    
 
 #Creamos un objeto de la clase Car
 car = Car()
