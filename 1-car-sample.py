@@ -9,6 +9,9 @@ class Car:
         self.__model = model
         self.__color = color
         self.__cylinder = cylinder
+        #Un atributo con un guion bajo (_) es protegido.
+        #Esto indica que no debe ser accedido directamente desde fuera de la clase, pero puede ser accedido por clases derivadas.
+        self.__other = 'motor'
         
     #metodo para mostrar los detalles del coche
     #No es recomendable usar print dentro de los metodos, ya que deben centrarse en devolver datos, no en mostrarlos
@@ -21,11 +24,20 @@ class Car:
         detail += f'cylinder = {self.__cylinder}\n'
         return detail
     
+    
     def set_model(self, value):
         self.__model = value
     
     def get_model(self):
         return self.__model
+    
+    @property
+    def model(self):
+        return self.__model
+    
+    @model.setter
+    def model(self, value):
+        self.__model = value
     
     def set_color(self, value):
         self.__color = value 
@@ -58,3 +70,5 @@ mazda = Car()
 mazda.cylinder = 3.0
 print(mazda.details())
 print(mazda.cylinder)
+mazda._other = 'nuevo motor'
+print(mazda.__other)
