@@ -12,7 +12,7 @@ class Car:
         #Un atributo con un guion bajo (_) es protegido.
         #Esto indica que no debe ser accedido directamente desde fuera de la clase, pero puede ser accedido por clases derivadas.
         self.__other = 'motor'
-        
+     
     #metodo para mostrar los detalles del coche
     #No es recomendable usar print dentro de los metodos, ya que deben centrarse en devolver datos, no en mostrarlos
     #Como en este metodo no imprime nada, para que se pueda devolver valores cuando le pasamos al objeto se necesitara usar print()
@@ -24,6 +24,13 @@ class Car:
         detail += f'cylinder = {self.__cylinder}\n'
         return detail
     
+    
+    #Metodo especial para convertir el objeto a una cadena de texto
+    def __str__(self):
+        return f'Car(manufacturer={self.__manufacturer}, model={self.__model}, color={self.__color}, cylinder={self.__cylinder})' 
+    #Metodo especial para representar el objeto de manera oficial
+    def __repr__(self):
+        return f'Car(manufacturer={self.__manufacturer}, model={self.__model}, color={self.__color}, cylinder={self.__cylinder})'
     
     def set_model(self, value):
         self.__model = value
@@ -59,16 +66,19 @@ car = Car("subaru")
 car.set_color("Red")  
 #Cambiamos el modelo del coche usando el metodo set_model
 car.set_model("Impreza")
+
 #Cambiamos el valor del atributo cylinder usando el decorador property
 car.cylinder = 2.0
-#Mostramos los detalles del objeto car
-print(car.details())
+car.model = "wrx"
 
+#Mostramos los detalles del objeto car
+print(car.get_color())
+print(car.details())
+print(f'Este printa desde el metodo __str__ \n {car}')
 
 #Creamos otro objeto de la clase Car
+print("-----Nuevo objeto mazda-----")
 mazda = Car()
 mazda.cylinder = 3.0
 print(mazda.details())
 print(mazda.cylinder)
-mazda._other = 'nuevo motor'
-print(mazda.__other)
