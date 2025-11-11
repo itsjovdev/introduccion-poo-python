@@ -21,11 +21,10 @@ print(car.details())
 print("-----Nuevo objeto mazda-----")
 mazda = Car('mazda', '3', 'blanco', 2.0)
 mazda.cylinder = 3.0
+#Mostramos los detalles del objeto mazda
 print(mazda.details())
 print(mazda.cylinder)
-
 print(car)
 print(repr(mazda))
-
 print(mazda.accelerate(3000, 100))
 print(mazda.brake())
