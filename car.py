@@ -57,6 +57,11 @@ class Car:
     def brake(self):
         return f"El auto {self.__manufacturer} {self.__model} esta frenando"
     
+    def accelerate_and_brake(self, rpm, speed):
+        acceleration = self.accelerate(rpm, speed)
+        braking = self.brake()
+        return f"{acceleration}\n{braking}"
+    
     #Metodo especial para convertir el objeto a una cadena de texto
     def __str__(self):
         return f'Car(manufacturer={self.__manufacturer}, model={self.__model}, color={self.__color}, cylinder={self.__cylinder})' 
