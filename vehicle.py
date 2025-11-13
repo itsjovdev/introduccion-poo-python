@@ -17,6 +17,8 @@ class Vehicle:
         if total == 0:
             # No se proporcionaron argumentos, todos los atributos se establecen en None
             pass
+        elif total == 1:
+            self.manufacturer = args[0]
         elif total == 2:
             self.manufacturer, self.model = args
         elif total == 3:
@@ -26,4 +28,8 @@ class Vehicle:
         elif total == 5:
             self.manufacturer, self.model, self.color, self.cylinder, self.tank_capacity = args
         else:
-            raise TypeError("Invalido cantidad de argumentos")
+            raise TypeError("Invalido cantidad de argumentos: esperado entre 0 -5, fueron {total}")
+        
+    def __str__(self):
+        return (f"Manufacturer: {self.manufacturer}, Model: {self.model}, Color: {self.color}, "
+                f"Cylinder: {self.cylinder}, Tank Capacity: {self.tank_capacity}")
