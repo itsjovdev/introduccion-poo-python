@@ -14,11 +14,11 @@ car.model ="Impreza modificado"
 #Mostramos los detalles del objeto car
 print(car.get_color())
 print(car.details())
-
+print(car.accelerate_and_brake(2500, 80))
 
 
 #Creamos otro objeto de la clase Car
-print("-----Nuevo objeto mazda-----")
+print("\n -----Nuevo objeto mazda-----")
 mazda = Car('mazda', '3', 'blanco', 2.0)
 mazda.cylinder = 3.0
 #Mostramos los detalles del objeto mazda
@@ -28,3 +28,8 @@ print(car)
 print(repr(mazda))
 print(mazda.accelerate(3000, 100))
 print(mazda.brake())
+
+#Calculamos el consumo de combustible
+print(f'Kilometros por litros: {mazda.calculate_consumption(300, 0.60)}')
+
+print(f'Kilometros por litros: {mazda.calculate_consumption(300, 60)}')

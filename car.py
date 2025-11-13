@@ -1,7 +1,12 @@
 #Para empezar esta seria de guia de PPO, vamos a crear una clase simple llamada Car que representara un coche con atributos basicos como marca, modelo y año.
 class Car:
     #El constructor __init__ es el constructor: se ejecuta al crear un nuevo objeto
-    def __init__(self, manufacturer = '', model = None, color = '', cylinder = 0.00):
+    def __init__(self, manufacturer: str | None = None , 
+                 model: str | None =  None, 
+                 color: str | None = None, 
+                 cylinder: float | None = 0.00,
+                 tank_capacity: float | None = 40.00
+                 ):
         #Los atributos con doble guion bajo (__) son privados.
         #Esto significa que no pueden ser accedidos ni modificados directamente desde fuera de la clase.
         self.__manufacturer = manufacturer
@@ -11,7 +16,38 @@ class Car:
         #Un atributo con un guion bajo (_) es protegido.
         #Esto indica que no debe ser accedido directamente desde fuera de la clase, pero puede ser accedido por clases derivadas.
         self.__other = 'motor'
-     
+        
+        # capacidad del tanque en litros
+        self.__tank_capacity = tank_capacity
+        
+    @classmethod
+    def empty(cls):
+        return cls()
+    
+    @classmethod
+    def basic(cls, manufacturer: str, model: str):
+        return cls(manufacturer, model)
+    
+    @classmethod
+    def with_color(cls, manufacturer: str, model: str, color: str):
+        return cls(manufacturer, model, color)
+    
+    @classmethod
+    def only_color(cls, manufacturer: str,  color: str):
+        return cls(manufacturer, None, color)
+    
+    @classmethod
+    def with_cylinder(cls, manufacturer: str, model: str, color: str, cylinder: float):
+        return cls(manufacturer, model, color, cylinder)
+    
+    @classmethod
+    def full_spec(cls, manufacturer: str, model: str, color: str, cylinder: float, tank_capacity: float):
+        return cls(manufacturer, model, color, cylinder, tank_capacity)
+    
+    @classmethod
+    def only_tank(cls, manufacturer: str, model: str, tank_capacity: float):
+        return cls(manufacturer, model, None, None, tank_capacity)
+    
     def set_model(self, value):
         self.__model = value
     
@@ -62,9 +98,16 @@ class Car:
         braking = self.brake()
         return f"{acceleration}\n{braking}"
     
+    #Metodo que calculara cuantos kilometros puede recorrer el coche por litro de combustible
+    def calculate_consumption(self, km, fuel_percentage):
+        if isinstance(fuel_percentage, int):
+            fuel_percentage = fuel_percentage / 100.00
+        return km / (fuel_percentage * self.__tank_capacity)
+    
+    
     #Metodo especial para convertir el objeto a una cadena de texto
     def __str__(self):
-        return f'Car(manufacturer={self.__manufacturer}, model={self.__model}, color={self.__color}, cylinder={self.__cylinder})' 
+        return f'Car(manufacturer={self.__manufacturer}, model={self.__model}, color={self.__color}, cylinder={self.__cylinder}, tank_capacity={self.__tank_capacity})' 
     #Metodo especial para representar el objeto de manera oficial, una versión mas tecnica
     def __repr__(self):
-        return f'{{manufacturer:{self.__manufacturer}, model:{self.__model}, color:{self.__color}, cylinder:{self.__cylinder}}}'
+        return f'{{manufacturer:{self.__manufacturer}, model:{self.__model}, color:{self.__color}, cylinder:{self.__cylinder} , tank_capacity:{self.__tank_capacity}}}'
