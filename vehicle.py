@@ -12,23 +12,30 @@ class Vehicle:
         self.color = None
         self.cylinder = None        
         self.tank_capacity = None
-        total = len(args)
+    
+        args_name = ['manufacturer', 'model', 'color', 'cylinder', 'tank_capacity']
+        for name, value in zip(args_name, args):
+            setattr(self, name, value)
         
-        if total == 0:
-            # No se proporcionaron argumentos, todos los atributos se establecen en None
-            pass
-        elif total == 1:
-            self.manufacturer = args[0]
-        elif total == 2:
-            self.manufacturer, self.model = args
-        elif total == 3:
-            self.manufacturer, self.model, self.color = args
-        elif total == 4:
-            self.manufacturer, self.model, self.color, self.cylinder = args
-        elif total == 5:
-            self.manufacturer, self.model, self.color, self.cylinder, self.tank_capacity = args
-        else:
-            raise TypeError("Invalido cantidad de argumentos: esperado entre 0 -5, fueron {total}")
+        
+        #total = len(args)
+        # if total == 0:
+        #     # No se proporcionaron argumentos, todos los atributos se establecen en None
+        #     pass
+        # elif total == 1:
+        #     self.manufacturer = args[0]
+        # elif total == 2:
+        #     self.manufacturer, self.model = args
+        # elif total == 3:
+        #     self.manufacturer, self.model, self.color = args
+        # elif total == 4:
+        #     self.manufacturer, self.model, self.color, self.cylinder = args
+        # elif total == 5:
+        #     self.manufacturer, self.model, self.color, self.cylinder, self.tank_capacity = args
+        # else:
+        #     raise TypeError("Invalido cantidad de argumentos: esperado entre 0 -5, fueron {total}")
+        
+        
         
     def __str__(self):
         return (f"Manufacturer: {self.manufacturer}, Model: {self.model}, Color: {self.color}, "
