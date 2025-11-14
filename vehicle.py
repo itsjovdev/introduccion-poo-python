@@ -22,16 +22,21 @@ class Vehicle:
         #
         # Si kwargs contiene un valor para uno de los atributos, lo sobrescribe.
         if len(kwargs) > 0:
-            if 'manufacturer' in args_name:
-                self.manufacturer = kwargs.get('manufacturer')
-            if 'model' in args_name:
-                self.model = kwargs.get('model')
-            if 'color' in args_name:
-                self.color = kwargs.get('color')
-            if 'cylinder' in args_name:
-                self.cylinder = kwargs.get('cylinder')
-            if 'tank_capacity' in args_name:
-                self.tank_capacity = kwargs.get('tank_capacity')
+            for key, value in kwargs.items():
+                if key in args_name:
+                    setattr(self, key, value)
+                else:
+                    raise TypeError(f"Argumento invalido: {key}")
+            # if 'manufacturer' in args_name:
+            #     self.manufacturer = kwargs.get('manufacturer')
+            # if 'model' in args_name:
+            #     self.model = kwargs.get('model')
+            # if 'color' in args_name:
+            #     self.color = kwargs.get('color')
+            # if 'cylinder' in args_name:
+            #     self.cylinder = kwargs.get('cylinder')
+            # if 'tank_capacity' in args_name:
+            #     self.tank_capacity = kwargs.get('tank_capacity')
             
             
         #total = len(args)
