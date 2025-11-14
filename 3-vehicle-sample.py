@@ -27,3 +27,14 @@ print(car5)
 print("===============================")
 car6 = Vehicle("ford", None, "rojo")
 print(car6)
+
+print("===============================")
+car7 = Vehicle(manufacturer="negro", color = "gris")
+print(car7)
+
+print("===============================")
+car8 = Vehicle(model="L200", cylinder=2.0)
+print(car8)
+
+print("===============================")
+car9 = Vehicle()

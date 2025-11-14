@@ -4,7 +4,7 @@ class Vehicle:
     # El constructor __init__ es el constructor: se ejecuta al crear un nuevo objeto.
     # Usamos *args para permitir que la clase reciba un número variable de argumentos.
     # Esto es útil en esta guía porque estamos enseñando cómo Python maneja parámetros dinámicos.
-    def __init__(self, *args):
+    def __init__(self, *args, **kwargs):
         #Los atributos con doble guion bajo (__) son privados.
         #Esto significa que no pueden ser accedidos ni modificados directamente desde fuera de la clase.
         self.manufacturer = None
@@ -16,8 +16,24 @@ class Vehicle:
         args_name = ['manufacturer', 'model', 'color', 'cylinder', 'tank_capacity']
         for name, value in zip(args_name, args):
             setattr(self, name, value)
-        
-        
+
+        # kwargs permite pasar argumentos por nombre, por ejemplo:
+        # Vehicle(color="Rojo", cylinder=2.0)
+        #
+        # Si kwargs contiene un valor para uno de los atributos, lo sobrescribe.
+        if len(kwargs) > 0:
+            if 'manufacturer' in args_name:
+                self.manufacturer = kwargs.get('manufacturer')
+            if 'model' in args_name:
+                self.model = kwargs.get('model')
+            if 'color' in args_name:
+                self.color = kwargs.get('color')
+            if 'cylinder' in args_name:
+                self.cylinder = kwargs.get('cylinder')
+            if 'tank_capacity' in args_name:
+                self.tank_capacity = kwargs.get('tank_capacity')
+            
+            
         #total = len(args)
         # if total == 0:
         #     # No se proporcionaron argumentos, todos los atributos se establecen en None
