@@ -111,3 +111,12 @@ class Car:
     #Metodo especial para representar el objeto de manera oficial, una versión mas tecnica
     def __repr__(self):
         return f'{{manufacturer:{self.__manufacturer}, model:{self.__model}, color:{self.__color}, cylinder:{self.__cylinder} , tank_capacity:{self.__tank_capacity}}}'
+    
+    #Metodo especial para comparar objetos de la clase Car
+    def __eq__(self, other):
+        if self is other:
+            return True
+        if not isinstance(other, Car):
+            return False
+        #Compara si el modelo y el fabricante seran iguales
+        return self.__model == other.__model and self.__manufacturer == other.__manufacturer
