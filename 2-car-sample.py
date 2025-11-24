@@ -1,5 +1,6 @@
 from car import Car
 
+Car.set_license_plate_color('blanco')
 
 car = Car().empty()
 print(car)
@@ -27,3 +28,6 @@ print(car5)
 print("===============================")
 car6 = Car.only_color("ford", "rojo")
 print(car6)
+
+# accedemos al atributo estatico
+print(Car.get_license_plate_color())

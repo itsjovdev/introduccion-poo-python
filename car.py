@@ -1,14 +1,20 @@
 #Para empezar esta seria de guia de PPO, vamos a crear una clase simple llamada Car que representara un coche con atributos basicos como marca, modelo y año.
 class Car:
+    
+    __license_plate_color = 'Orange'
+    
+    last_id = 0
+    
     #El constructor __init__ es el constructor: se ejecuta al crear un nuevo objeto
     def __init__(self, manufacturer: str | None = None , 
                  model: str | None =  None, 
                  color: str | None = None, 
                  cylinder: float | None = 0.00,
-                 tank_capacity: float | None = 40.00
-                 ):
+                 tank_capacity: float | None = 40.00):
         #Los atributos con doble guion bajo (__) son privados.
         #Esto significa que no pueden ser accedidos ni modificados directamente desde fuera de la clase.
+        Car.last_id = Car.last_id + 1
+        self.__id = Car.last_id
         self.__manufacturer = manufacturer
         self.__model = model
         self.__color = color
@@ -54,6 +60,15 @@ class Car:
     def get_model(self):
         return self.__model
     
+    #para trabajar con el atributo estatico
+    @classmethod
+    def set_license_plate_color(cls, value):
+        cls.__license_plate_color = value
+    
+    @classmethod
+    def get_license_plate_color(cls):
+        return cls.__license_plate_color
+    
     @property
     def model(self):
         return self.__model
@@ -85,6 +100,10 @@ class Car:
         detail += f'model = {self.__model}\n'
         detail += f'color = {self.__color}\n'
         detail += f'cylinder = {self.__cylinder}\n'
+        detail += f'patente = {Car.__license_plate_color}\n'
+        detail += f'id = {self.__id}'
+        
+        
         return detail
     
     def accelerate(self, rpm, speed):
@@ -107,7 +126,12 @@ class Car:
     
     #Metodo especial para convertir el objeto a una cadena de texto
     def __str__(self):
-        return f'Car(manufacturer={self.__manufacturer}, model={self.__model}, color={self.__color}, cylinder={self.__cylinder}, tank_capacity={self.__tank_capacity})' 
+        return (f'Car(manufacturer={self.__manufacturer}, '
+            f'model={self.__model}, color={self.__color}, '
+            f'cylinder={self.__cylinder}, tank_capacity={self.__tank_capacity}, '
+            f'license_plate_color={Car.__license_plate_color})'
+            f'id = {self.__id}'
+            )
     #Metodo especial para representar el objeto de manera oficial, una versión mas tecnica
     def __repr__(self):
         return f'{{manufacturer:{self.__manufacturer}, model:{self.__model}, color:{self.__color}, cylinder:{self.__cylinder} , tank_capacity:{self.__tank_capacity}}}'
