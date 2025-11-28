@@ -1,4 +1,5 @@
 from typing import Final
+from color import Color
 
 #Para empezar esta seria de guia de PPO, vamos a crear una clase simple llamada Car que representara un coche con atributos basicos como marca, modelo y año.
 class Car:
@@ -7,22 +8,13 @@ class Car:
     
     last_id = 0
     
-    # Constantes de clase, son inmutables y se usan para valores que no cambian(aunque realmente en python si se puede cambiar), 
-    # se definen en mayusculas
-    MAX_SPEED_HIGHWAY: Final[int] = 180
-    COLOR_RED = 'RojoX'
-    COLOR_WHITE:Final[str] = 'Blanc'
-    COLOR_GRIS:Final[str] = "Gris"
-    COLOR_BLUE:Final[str] = "Azul"
-    COLOR_BLACK:Final[str] = "Negro"
-    
-    
+  
     
     
     #El constructor __init__ es el constructor: se ejecuta al crear un nuevo objeto
     def __init__(self, manufacturer: str | None = None,
                  model: str | None =  None, 
-                 color: str | None = None, 
+                 color: str | Color | None = None, 
                  cylinder: float | None = 0.00,
                  tank_capacity: float | None = 40.00):
         #Los atributos con doble guion bajo (__) son privados.
@@ -49,19 +41,19 @@ class Car:
         return cls(manufacturer, model)
     
     @classmethod
-    def with_color(cls, manufacturer: str, model: str, color: str):
+    def with_color(cls, manufacturer: str, model: str, color: str | Color):
         return cls(manufacturer, model, color)
     
     @classmethod
-    def only_color(cls, manufacturer: str,  color: str):
+    def only_color(cls, manufacturer: str,  color: str | Color):
         return cls(manufacturer, None, color)
     
     @classmethod
-    def with_cylinder(cls, manufacturer: str, model: str, color: str, cylinder: float):
+    def with_cylinder(cls, manufacturer: str, model: str, color: str | Color, cylinder: float):
         return cls(manufacturer, model, color, cylinder)
     
     @classmethod
-    def full_spec(cls, manufacturer: str, model: str, color: str, cylinder: float, tank_capacity: float):
+    def full_spec(cls, manufacturer: str, model: str, color: str | Color, cylinder: float, tank_capacity: float):
         return cls(manufacturer, model, color, cylinder, tank_capacity)
     
     @classmethod
@@ -141,7 +133,7 @@ class Car:
     #Metodo especial para convertir el objeto a una cadena de texto
     def __str__(self):
         return (f'Car(manufacturer={self.__manufacturer}, '
-            f'model={self.__model}, color={self.__color}, '
+            f'model={self.__model}, color={self.__color.value if isinstance(self.__color, Color) else self.__color}, '
             f'cylinder={self.__cylinder}, tank_capacity={self.__tank_capacity}, '
             f'license_plate_color={Car.__license_plate_color})'
             f'id = {self.__id}'
