@@ -10,11 +10,11 @@ car1 = Car.basic("mazda", "3")
 print(car1)
 
 print("===============================")
-car2 = Car.with_color("citroen", "c3", "gris")
+car2 = Car.with_color("citroen", "c3", Car.COLOR_RED)
 print(car2)
 
 print("===============================")
-car3 = Car.with_cylinder("subaru", "legacy", "azul", 1.5)
+car3 = Car.with_cylinder("subaru", "legacy", Car.COLOR_BLUE, 1.5)
 print(car3)
 
 print("===============================")
@@ -31,3 +31,11 @@ print(car6)
 
 # accedemos al atributo estatico
 print(Car.get_license_plate_color())
+
+speed_max_highway = Car.MAX_SPEED_HIGHWAY
+print(f"La velocidad maxima en carretera es: {speed_max_highway} km/h")
+# tambien podemos imprimir directamente con la clase
+print(Car.MAX_SPEED_HIGHWAY)
+
+Car.MAX_SPEED_HIGHWAY = 400
+print(Car.MAX_SPEED_HIGHWAY)

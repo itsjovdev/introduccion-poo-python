@@ -1,3 +1,5 @@
+from typing import Final
+
 #Para empezar esta seria de guia de PPO, vamos a crear una clase simple llamada Car que representara un coche con atributos basicos como marca, modelo y año.
 class Car:
     
@@ -5,8 +7,20 @@ class Car:
     
     last_id = 0
     
+    # Constantes de clase, son inmutables y se usan para valores que no cambian(aunque realmente en python si se puede cambiar), 
+    # se definen en mayusculas
+    MAX_SPEED_HIGHWAY: Final[int] = 180
+    COLOR_RED = 'RojoX'
+    COLOR_WHITE:Final[str] = 'Blanc'
+    COLOR_GRIS:Final[str] = "Gris"
+    COLOR_BLUE:Final[str] = "Azul"
+    COLOR_BLACK:Final[str] = "Negro"
+    
+    
+    
+    
     #El constructor __init__ es el constructor: se ejecuta al crear un nuevo objeto
-    def __init__(self, manufacturer: str | None = None , 
+    def __init__(self, manufacturer: str | None = None,
                  model: str | None =  None, 
                  color: str | None = None, 
                  cylinder: float | None = 0.00,
