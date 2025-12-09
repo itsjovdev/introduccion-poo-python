@@ -73,3 +73,6 @@ match car_type:
         print("Es un sedan.")
     case CarType.HATCHBACK:
         print("Es un hatchback.")
+
+for ct in CarType:
+    print(f'Tipo de coche: {ct.name}, Nombre: {ct.name_default}, Descripción: {ct.description}, Número de puertas: {ct.door_count}')
