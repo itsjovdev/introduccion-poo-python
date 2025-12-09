@@ -32,6 +32,8 @@ class Car:
         # capacidad del tanque en litros
         self.__tank_capacity = tank_capacity
         
+        self.car_type = None  # Tipo de coche, puede ser asignado posteriormente
+        
     @classmethod
     def empty(cls):
         return cls()
@@ -97,6 +99,15 @@ class Car:
     def cylinder(self, value):
         self.__cylinder = value
         
+    
+    @property
+    def car_type(self):
+        return self.__car_type
+    
+    @car_type.setter
+    def car_type(self, value):
+        self.__car_type = value
+        
     #metodo para mostrar los detalles del coche
     #No es recomendable usar print dentro de los metodos, ya que deben centrarse en devolver datos, no en mostrarlos
     #Como en este metodo no imprime nada, para que se pueda devolver valores cuando le pasamos al objeto se necesitara usar print()
@@ -108,6 +119,8 @@ class Car:
         detail += f'cylinder = {self.__cylinder}\n'
         detail += f'patente = {Car.__license_plate_color}\n'
         detail += f'id = {self.__id}'
+        
+        
         
         
         return detail
@@ -137,6 +150,7 @@ class Car:
             f'cylinder={self.__cylinder}, tank_capacity={self.__tank_capacity}, '
             f'license_plate_color={Car.__license_plate_color})'
             f'id = {self.__id}'
+            f'car_type={self.__car_type.name if self.__car_type else None}'
             )
     #Metodo especial para representar el objeto de manera oficial, una versión mas tecnica
     def __repr__(self):
