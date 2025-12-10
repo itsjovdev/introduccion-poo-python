@@ -1,6 +1,8 @@
-from typing import Final
+from typing import Final, Optional
 from color import Color
-
+from engine import Engine
+from fuel_tank import FuelTank
+from car_type import CarType
 #Para empezar esta seria de guia de PPO, vamos a crear una clase simple llamada Car que representara un coche con atributos basicos como marca, modelo y año.
 class Car:
     
@@ -8,15 +10,13 @@ class Car:
     
     last_id = 0
     
-  
-    
-    
+
     #El constructor __init__ es el constructor: se ejecuta al crear un nuevo objeto
     def __init__(self, manufacturer: str | None = None,
                  model: str | None =  None, 
                  color: str | Color | None = None, 
-                 cylinder: float | None = 0.00,
-                 tank_capacity: float | None = 40.00):
+                 engine: Optional[Engine]  = None,
+                 fuel_tank: Optional[FuelTank]  = None):
         #Los atributos con doble guion bajo (__) son privados.
         #Esto significa que no pueden ser accedidos ni modificados directamente desde fuera de la clase.
         Car.last_id = Car.last_id + 1
@@ -24,15 +24,14 @@ class Car:
         self.__manufacturer = manufacturer
         self.__model = model
         self.__color = color
-        self.__cylinder = cylinder
+        self.__engine: Optional[Engine] = engine
         #Un atributo con un guion bajo (_) es protegido.
         #Esto indica que no debe ser accedido directamente desde fuera de la clase, pero puede ser accedido por clases derivadas.
         self.__other = 'motor'
         
         # capacidad del tanque en litros
-        self.__tank_capacity = tank_capacity
-        
-        self.car_type = None  # Tipo de coche, puede ser asignado posteriormente
+        self.__fuel_tank: FuelTank |None = fuel_tank
+        self.__car_type: Optional[CarType]  = None  # Tipo de coche, puede ser asignado posteriormente
         
     @classmethod
     def empty(cls):
@@ -92,12 +91,12 @@ class Car:
         return self.__color
     
     @property
-    def cylinder(self):
-        return self.__cylinder
+    def engine(self):
+        return self.__engine
     
-    @cylinder.setter
-    def cylinder(self, value):
-        self.__cylinder = value
+    @engine.setter
+    def engine(self, value):
+        self.__engine = value
         
     
     @property
@@ -108,6 +107,15 @@ class Car:
     def car_type(self, value):
         self.__car_type = value
         
+        
+    @property
+    def fuel_tank(self):
+        return self.__fuel_tank
+    
+    @fuel_tank.setter
+    def fuel_tank(self, value):
+        self.__fuel_tank = value
+        
     #metodo para mostrar los detalles del coche
     #No es recomendable usar print dentro de los metodos, ya que deben centrarse en devolver datos, no en mostrarlos
     #Como en este metodo no imprime nada, para que se pueda devolver valores cuando le pasamos al objeto se necesitara usar print()
@@ -116,7 +124,7 @@ class Car:
         detail = f'manufacturer = {self.__manufacturer}\n'
         detail += f'model = {self.__model}\n'
         detail += f'color = {self.__color}\n'
-        detail += f'cylinder = {self.__cylinder}\n'
+        detail += f'engine = {self.__engine.cylinder if isinstance(self.__engine, Engine) else None}\n'
         detail += f'patente = {Car.__license_plate_color}\n'
         detail += f'id = {self.__id}'
         
@@ -147,6 +155,7 @@ class Car:
     def __str__(self):
         return (f'Car(manufacturer={self.__manufacturer}, '
             f'model={self.__model}, color={self.__color.value if isinstance(self.__color, Color) else self.__color}, '
+            f'engine_cylinder={self.__engine.cylinder if isinstance(self.__engine, Engine) else None}, '
             f'cylinder={self.__cylinder}, tank_capacity={self.__tank_capacity}, '
             f'license_plate_color={Car.__license_plate_color})'
             f'id = {self.__id}'
@@ -154,7 +163,7 @@ class Car:
             )
     #Metodo especial para representar el objeto de manera oficial, una versión mas tecnica
     def __repr__(self):
-        return f'{{manufacturer:{self.__manufacturer}, model:{self.__model}, color:{self.__color}, cylinder:{self.__cylinder} , tank_capacity:{self.__tank_capacity}}}'
+        return f'{{manufacturer:{self.__manufacturer},engine = {self.__engine.cylinder if isinstance(self.__engine, Engine) else None},   model:{self.__model}, color:{self.__color}, cylinder:{self.__cylinder} , tank_capacity:{self.__tank_capacity}}}'
     
     #Metodo especial para comparar objetos de la clase Car
     def __eq__(self, other):
