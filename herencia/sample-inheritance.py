@@ -9,7 +9,7 @@ student.first_name = "John"
 student.last_name = "Doe"
 student.email = "correo@gmail.com"
 alumno = cast(Student, student)
-alumno.institution = "University X"
+alumno.institution = "University XYZ"
 
 
 teacher = Teacher()
@@ -22,6 +22,10 @@ teacher.subject = Subject.MATEMATICS
 print(student.first_name, student.last_name, student.email, student.institution)
 print(teacher.first_name, teacher.last_name)
 print(f"{teacher.subject.name}: {teacher.subject.value}")
+print("-----------------------------------------------------------------------")
+print(f"student.speack")
 print(student.speak())
+print("alumno.write_blackboard")
 print(alumno.write_blackboard())
+print("alumno.speak")
 print(alumno.speak())
