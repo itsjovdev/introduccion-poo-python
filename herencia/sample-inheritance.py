@@ -8,6 +8,10 @@ student: Person = Student()
 student.first_name = "John"
 student.last_name = "Doe"
 student.email = "correo@gmail.com"
+# student está tipado como Person, por eso desde aquí solo se pueden usar
+# los atributos y métodos definidos en Person.
+# Con cast lo tratamos como Student para poder acceder
+# a sus atributos y métodos específicos.
 alumno = cast(Student, student)
 alumno.institution = "University XYZ"
 
