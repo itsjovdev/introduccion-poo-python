@@ -14,7 +14,8 @@ student.email = "correo@gmail.com"
 # a sus atributos y métodos específicos.
 alumno = cast(Student, student)
 alumno.institution = "University XYZ"
-
+hola = student.institution = "University XaaYZ"
+print(f'fff : {hola}')
 
 teacher = Teacher()
 teacher.first_name = "Jane"
@@ -28,8 +29,8 @@ print(teacher.first_name, teacher.last_name)
 print(f"{teacher.subject.name}: {teacher.subject.value}")
 print("-----------------------------------------------------------------------")
 print(f"student.speack")
-print(student.speak())
+student.speak()
 print("alumno.write_blackboard")
-print(alumno.write_blackboard())
+alumno.write_blackboard()
 print("alumno.speak")
-print(alumno.speak())
+alumno.speak()
