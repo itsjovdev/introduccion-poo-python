@@ -2,7 +2,7 @@ from course.example.opp.inheritance.models.person import Person
 from course.example.opp.inheritance.models.student import Student
 from course.example.opp.inheritance.models.subject import Subject
 from course.example.opp.inheritance.models.teacher import Teacher
-from typing import cast
+from typing import cast, List
 
 student: Person = Student()
 student.first_name = "John"
@@ -12,6 +12,7 @@ student.email = "correo@gmail.com"
 # los atributos y métodos definidos en Person.
 # Con cast lo tratamos como Student para poder acceder
 # a sus atributos y métodos específicos.
+# Type hints(sugerencia de tipado)
 alumno = cast(Student, student)
 alumno.institution = "University XYZ"
 hola = student.institution = "University XaaYZ"
@@ -34,3 +35,19 @@ print("alumno.write_blackboard")
 alumno.write_blackboard()
 print("alumno.speak")
 alumno.speak()
+
+print("-----------------------------------------------------------------------")
+#isinstance se usa para verificar si un objeto es instancia de una clase, o de cualquiera de sus clases padres
+print(isinstance(student, Person))
+print(isinstance(alumno, Person))
+print(isinstance(teacher, Person))
+print(isinstance(teacher, Student))
+print("-----------------------------------------------------------------------")
+
+persons: List[Person] = [student, teacher]
+
+for p in persons:
+    if isinstance(p, Student):
+        p.write_blackboard()
+    else:
+        print("No es alumno")
