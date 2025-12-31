@@ -1,13 +1,21 @@
 from course.example.opp.inheritance.models.person import Person
+from typing import Optional
 
 class Student(Person):
 
-    def __init__(self):
-        super().__init__()
-        self.institution = None
-        self.math_grade = None
-        self.language = None
-        self.history = None
+    def __init__(self, first_name: str | None = None, 
+                 last_name: Optional[str] = None,
+                 email: Optional[str] = None,
+                 institution: str | None = None,
+                 math_grade: float = 0.00,
+                 language_grade: float = 0.00,
+                 history_grade: float = 0.00):
+        
+        super().__init__(first_name, last_name, email)
+        self.institution = institution
+        self.math_grade = math_grade
+        self.language_grade = language_grade
+        self.history_grade = history_grade
         
     def speak(self):
         print('El alumno hace una pregunta al profesor')
