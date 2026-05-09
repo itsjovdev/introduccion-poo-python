@@ -18,7 +18,13 @@ class Student(Person):
         self.history_grade = history_grade
         
     def speak(self):
-        print('El alumno hace una pregunta al profesor')
+        return 'El alumno hace una pregunta al profesor'
         
     def write_blackboard(self):
-        print('El alumno desarrolla un tema en la pizarra')
+        return 'El alumno desarrolla un tema en la pizarra'
+    
+    def greet(self):
+        return f"Hola, soy un estudiante de {self.first_name} y estudio en {self.institution}"
+    
+    def calculate_average(self):
+        return (self.math_grade + self.language_grade + self.history_grade) / 3
