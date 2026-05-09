@@ -15,3 +15,6 @@ class Person:
     
     def greet(self):
         return f'Hola, que tal?'
+    
+    def __str__(self):
+        return f'nombre: {self.first_name}, apellido: {self.last_name}, email: {self.email}\n Saludar={self.greet()}'

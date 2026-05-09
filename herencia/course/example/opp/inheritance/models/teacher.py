@@ -13,3 +13,6 @@ class Teacher(Person):
         
     def greet(self):
         return f"Hola, soy el profesor {self.first_name} y realizo clases de {self.subject}"
+    
+    def __str__(self):
+        return super().__str__() +  f'\n assignatura= {self.subject}'

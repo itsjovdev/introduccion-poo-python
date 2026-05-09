@@ -22,3 +22,8 @@ class InternationalStudent(Student):
     def calculate_average(self):
         base_sum = super().calculate_average()*3
         return (base_sum + self.foreign_language_grade) / 4
+    
+    def __str__(self):
+        return (f'{super().__str__()}\n'
+               f'nota de idioma= {self.foreign_language_grade},'
+               f'país= {self.country}')
